@@ -26,8 +26,7 @@ public class ConversorModelo {
     }
 
     public float recuperarMoneda() throws ExcepcionMoneda {
-        monedaRepository = new MonedaRepositoryImpl();
-        Iterator<MonedaVO> it = monedaRepository.ObtenerListaMonedas().iterator();
+        Iterator<MonedaVO> it = this.monedaRepository.ObtenerListaMonedas().iterator();
         float mult=0;
         while(it.hasNext()) {
             MonedaVO mon = (MonedaVO)it.next();
@@ -37,5 +36,4 @@ public class ConversorModelo {
         }
         return mult;
     }
-
 }

@@ -30,6 +30,8 @@ public class Main extends Application {
         MonedaRepositoryImpl monedaRepository = new MonedaRepositoryImpl(); // Crear instancia del repositorio
         conversorModelo = new ConversorModelo(); // Pasar repositorio al modelo
         conversorModelo.setMonedaRepository(monedaRepository);
+        controlador.setConversorModelo(conversorModelo);
+        controlador.getMultiplicador();
 
 
 //        controlador.getMultiplicador(mult);

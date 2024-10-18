@@ -12,9 +12,13 @@ public class ConversorController {
     @FXML
     private TextField cambio;
 
-    private ConversorModelo conversorModelo = new ConversorModelo();
-    
-    private float mult = getMultiplicador();
+    private ConversorModelo conversorModelo;
+
+    private float mult;
+
+    public void setConversorModelo(ConversorModelo conversorModelo){
+        this.conversorModelo = conversorModelo;
+    }
 
     public float getMultiplicador() {
         try {

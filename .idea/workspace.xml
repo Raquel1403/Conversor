@@ -9,8 +9,6 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/agendav2/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/agendav2/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/agendav2/controller/ConversorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/agendav2/controller/ConversorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/agendav2/modelo/ConversorModelo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/agendav2/modelo/ConversorModelo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/agendav2/ConversorView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/agendav2/ConversorView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
