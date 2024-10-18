@@ -5,39 +5,37 @@ import Modelo.MonedaVO;
 import Modelo.repository.MonedaRepository;
 import Modelo.repository.impl.MonedaRepositoryImpl;
 import javafx.application.Application;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class ConversorModelo implements MonedaRepository {
+public class ConversorModelo {
 
-   private MonedaRepositoryImpl monedaRepository;
+    private MonedaRepositoryImpl monedaRepository;
 
-    public static void main(String[] args) {}
-
-    public void recuperarMoneda(float multiplicador,  float cantidad){
-
+    public void setMonedaRepository(MonedaRepositoryImpl monedaRepository) {
+        this.monedaRepository = monedaRepository;
     }
 
-    @Override
-    public ArrayList<MonedaVO> ObtenerListaMonedas() throws ExcepcionMoneda {
-        return null;
+    public float convertir(float multiplicador, float cantidad) {
+        // Realizar la conversión
+        float resultado = cantidad * multiplicador;
+        return resultado;
     }
 
-    @Override
-    public void addMoneda(MonedaVO monedaVO) throws ExcepcionMoneda {
+    public float recuperarMoneda() throws ExcepcionMoneda {
+        monedaRepository = new MonedaRepositoryImpl();
+        Iterator<MonedaVO> it = monedaRepository.ObtenerListaMonedas().iterator();
+        float mult=0;
+        while(it.hasNext()) {
+            MonedaVO mon = (MonedaVO)it.next();
+            if (mon.getNombre().equalsIgnoreCase("euros")){
+                mult = mon.getMultiplicador();
+            }
+        }
+        return mult;
     }
 
-    @Override
-    public void deleteMoneda(Integer integer) throws ExcepcionMoneda {
-    }
-
-    @Override
-    public void editMoneda(MonedaVO monedaVO) throws ExcepcionMoneda {
-    }
-
-    @Override
-    public int lastId() throws ExcepcionMoneda {
-        return 0;
-    }
 }

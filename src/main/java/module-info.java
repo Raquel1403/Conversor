@@ -14,5 +14,6 @@ module com.example.agendav2 {
     requires java.sql;
 
     opens com.example.agendav2 to javafx.fxml;
+    opens com.example.agendav2.controller to javafx.fxml;
     exports com.example.agendav2;
 }

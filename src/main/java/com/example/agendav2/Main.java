@@ -2,39 +2,45 @@ package com.example.agendav2;
 
 import Modelo.ExcepcionMoneda;
 import Modelo.MonedaVO;
-import Modelo.repository.impl.MonedaRepositoryImpl;
+import Modelo.repository.MonedaRepository;
+import Modelo.repository.impl.MonedaRepositoryImpl; // Asegúrate de que este paquete existe
 import com.example.agendav2.controller.ConversorController;
 import com.example.agendav2.modelo.ConversorModelo;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Main {
-    public Main() {
+public class Main extends Application {
+
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        // Carga el archivo FXML que contiene el diseño y el controlador
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ConversorView.fxml"));
+        Parent root = loader.load();
+        ConversorController controlador = loader.getController();
+
+
+        ConversorModelo conversorModelo;
+        MonedaRepositoryImpl monedaRepository = new MonedaRepositoryImpl(); // Crear instancia del repositorio
+        conversorModelo = new ConversorModelo(); // Pasar repositorio al modelo
+        conversorModelo.setMonedaRepository(monedaRepository);
+
+
+//        controlador.getMultiplicador(mult);
+
+        // Establece la escena
+        primaryStage.setTitle("Conversor de Monedas");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
     }
 
     public static void main(String[] args) {
-        try {
-            MonedaRepositoryImpl monedarepositoryImpl = new MonedaRepositoryImpl();
-            MonedaVO monedaPrueba = new MonedaVO("euros", 1.2F);
-            monedarepositoryImpl.addMoneda(monedaPrueba);
-            //System.out.println(monedarepositoryImpl.ObtenerListaMonedas().size());
-            //System.out.println(monedarepositoryImpl.lastId() + " last id");
-            /*Iterator<MonedaVO> it = monedarepositoryImpl.ObtenerListaMonedas().iterator();
-            while(it.hasNext()) {
-                MonedaVO mon = (MonedaVO)it.next();
-                System.out.println(mon.getCodigo() + " " + mon.getNombre() + ' ' + mon.getMultiplicador());
-            }*/
-            ConversorModelo con = new ConversorModelo();
-            float  m = monedaPrueba.getMultiplicador();
-            ConversorController cc = new ConversorController();
-            float c = cc.getCantidad();
-            con.recuperarMoneda(m, c);
-
-        } catch (ExcepcionMoneda var5) {
-            ExcepcionMoneda e = var5;
-            System.out.println(e.imprimirMensaje());
-        }
-
+        launch(args);
     }
 }
-

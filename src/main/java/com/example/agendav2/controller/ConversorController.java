@@ -1,30 +1,41 @@
 package com.example.agendav2.controller;
 
-import com.example.agendav2.Main;
-import javafx.application.Application;
+import Modelo.ExcepcionMoneda;
+import com.example.agendav2.modelo.ConversorModelo;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
-public class ConversorController{
-
-    @FXML
-    TextField cantidad;
-    @FXML
-    TextField cambio;
+public class ConversorController {
 
     @FXML
-    Main mainApp;
+    private TextField cantidad;
+    @FXML
+    private TextField cambio;
 
-public void ponerContador(){
-    int nuevoValor = Integer.parseInt(cantidad.getText());
-  /* numPulsaciones.set(nuevoValor);
-    setContador();*/
-}
+    private ConversorModelo conversorModelo = new ConversorModelo();
+    
+    private float mult = getMultiplicador();
 
-public float getCantidad(){
-    float cantidad = Float.parseFloat(this.cantidad.getText());
-    return cantidad;
-}
+    public float getMultiplicador() {
+        try {
+            mult = conversorModelo.recuperarMoneda();
+        } catch (ExcepcionMoneda e) {
+            throw new RuntimeException(e);
+        }
+        return mult;
+    }
+
+    public void cambioM() {
+        float cantidadIngresada = Float.parseFloat(cantidad.getText());
+        float cambioDolar;
+        try {
+            cambioDolar = conversorModelo.convertir(mult, cantidadIngresada);
+            cambio.setText(String.format("%.2f", cambioDolar));
+        } catch (NumberFormatException e) {
+            // Manejar el caso de que el usuario no haya ingresado un número válido
+            cambio.setText("Entrada inválida");
+        }
+
+    }
 
 }
